@@ -15,24 +15,24 @@ var frmSaque = document.getElementById('frmSaque');
 if(frmSaque != null && typeof frmSaque != 'undefined'){
     frmSaque.addEventListener('submit', (event) => {
         let valor = getById('txtValor');
-        let valor = getById('txtSaldo');
-    
-        if(!validaDinheiro(valor)) {
+        let saldo = getById('txtSaldo');
+        let tempValor = valor.replace(/[.,]/g, '');
+
+        if(!validaDinheiro(valor) || tempValor <= 0) {
             alert ('Informe o valor para o saque.');
+            event.preventDefault();        
         }
 
         if(!validaDinheiro(saldo)){
             alert('Saldo inválido!')
+            event.preventDefault();        
         }
 
-        let tempValor = valor.replace(/[.,]/g, '');
         let tempSaldo = saldo.replace(/[.,]/g, '');
     
-        if(tempValor > saldo){
-            alert('');
+        if(tempValor > tempSaldo){
+            alert('Saldo insuficiente.');
+            event.preventDefault();        
         }
-        console.log(tempValor + ' - ' + tempSaldo);
-
-        event.preventDefault();
     })
 }

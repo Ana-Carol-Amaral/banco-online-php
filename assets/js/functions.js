@@ -45,8 +45,11 @@ function getById(el){
 }
 
 function validaDinheiro(valor){
-    valor = valor.replace(',', '.');
+    valor = valor.replace(/[.,]/g, '');
+    valor = parseFloat(valor).toFixed(2);
+
     var regex = /^\d+(?:\.\d{0,2})$/;
+    
     if(!regex.test(valor) || parseInt(valor.replace(/[0.,]/g, '')) <= 0){
         return false;
     }
