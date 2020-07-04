@@ -74,7 +74,7 @@ function validaCPF($cpf)
  * @param  string $mode Modo de escrita.
  * @return void
  */
-function gravar(string $path, string $data, string $mode = 'w')
+function gravar(string $path, string $data, string $mode = 'w+')
 {
     $fp = fopen($path, $mode);
     fwrite($fp, $data);
@@ -90,6 +90,9 @@ function gravar(string $path, string $data, string $mode = 'w')
  */
 function ler(string $path, string $mode = 'r')
 {
+    if(!file_exists($path) || filesize($path) <= 0){
+        return;
+    }
     $fp = fopen($path, $mode);
     $content = fread($fp, filesize($path));
     fclose($fp);
@@ -128,5 +131,5 @@ function security()
 
 function validarDinheiro($valor){
     $valor = str_replace([','], '.', $valor);
-    return number_format($valor, 2, '.', '');
+    return str_replace([','], '.', $valor);
 }

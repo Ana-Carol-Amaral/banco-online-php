@@ -31,12 +31,17 @@ class ContaController extends Controller
 
     public function extrato()
     {
-        $this->view('interna/extrato', []);
+        $extrato = str_replace('*', '<br>', (new \app\classes\Extrato())->getExtrato());
+        $this->view('interna/extrato', [
+            'extrato' => $extrato
+        ]);
     }
 
     public function deposito()
     {
-        $this->view('interna/deposito');
+        $this->view('interna/deposito', [
+            'saldo' => (new \app\classes\Transacao())->getSaldo()
+        ]);
     }
 
     public function saque()

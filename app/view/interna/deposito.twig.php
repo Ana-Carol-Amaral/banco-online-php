@@ -16,7 +16,7 @@
     </div>
 
     <div class="grid-50">
-        <p class="saldo-medio">Saldo Atual R$</p>
+        <p class="saldo-medio">Saldo Atual R$ {{saldo | number_format(2, ',', '.')}}</p>
     </div>
 
     <div class="clear"></div>

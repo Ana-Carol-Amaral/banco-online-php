@@ -1,10 +1,12 @@
 <?php
 
 namespace app\classes;
+use app\classes\Extrato;
 
 class Transacao
 {
     private $path;
+    private $saldo;
 
     public function __construct()
     {
@@ -21,7 +23,8 @@ class Transacao
         $soma = (number_format(validarDinheiro($valor) + $this->saldo, 2, '.', ''));   
         gravar($this->path, $soma);
         //Texto para o extrato
-        $mensagemExtrato = 'Deposito de R$ ' . validarDinheiro($valor);
+        $mensagemExtrato = 'Deposito de:<span style="color: green"> R$' .validarDinheiro($valor) . '</span>*';
+        (new Extrato())->setExtrato($mensagemExtrato);
 
         header('Location: ' . BASE . '?url=saldo');
     }

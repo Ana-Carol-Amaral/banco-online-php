@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="center">
-    <h1 class="saldo">Saldo atual: R$ {{ saldo | number_format(2, '.', ',') }}</h1>
+    <h1 class="saldo">Saldo atual: R$ {{ saldo | number_format(2, ',', '.') }}</h1>
 </div>
 
 {% endblock %}
