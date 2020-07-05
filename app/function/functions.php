@@ -130,6 +130,6 @@ function security()
 }
 
 function validarDinheiro($valor){
-    $valor = str_replace([','], '.', $valor);
-    return str_replace([','], '.', $valor);
+    $valor = str_replace('.', '', $valor);
+    return str_replace(',', '.', $valor);
 }

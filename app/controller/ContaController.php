@@ -63,4 +63,19 @@ class ContaController extends Controller
         
         $this->transacao->depositar($valor);
     }
+
+    public function sacar(){
+        $valor = filter_input(INPUT_POST, 'txtValor', FILTER_SANITIZE_STRING);
+        
+        if(trim($valor) == '' || !$valor || str_replace([',', '.'], '', $valor) <= 0){
+            $this->view('interna/message', [
+                'message' => 'O valor informado não pode ser sacado.'
+            ]);
+            return;
+        }
+        
+        $this->transacao->sacar($valor);
+    }
 }
+
+

@@ -55,3 +55,33 @@ function validaDinheiro(valor){
     }
     return true;
 }
+/*
+    type    = [info, success, warning ou danger]
+    message = mostrar string 
+    target  = onde colocar o código  
+*/
+function setAlert(type, message, target){
+    let className = '';
+    
+    switch(type){
+        case 'warning':
+            className = 'alert alert-warning';
+            break;
+        case 'info':
+            className = 'alert alert-info';
+            break;
+        case 'success':
+            className = 'alert alert-success';
+            break;
+        case 'danger':
+            className = 'alert alert-danger';
+            break;
+    }
+
+    let div = document.createElement('div');
+    div.className = className;
+    div.innerHTML = message;
+
+    document.getElementById(target).innerHTML = '';
+    document.getElementById(target).appendChild(div);
+}
