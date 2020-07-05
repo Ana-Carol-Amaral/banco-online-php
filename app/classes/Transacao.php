@@ -15,6 +15,7 @@ class Transacao
         $cpf = $_SESSION['cpf'] ?? null;
 
         $this->path = DATA_PATH . '/' . trataCPF($cpf) . '/saldo.txt';
+        
         if(file_exists($this->path))
             $this->saldo = ler($this->path);
         else
