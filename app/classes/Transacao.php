@@ -1,7 +1,9 @@
 <?php
 
 namespace app\classes;
+
 use app\classes\Extrato;
+use Decimal\Decimal;
 
 class Transacao
 {
@@ -20,10 +22,35 @@ class Transacao
     }
 
     public function depositar($valor){
-        $soma = (number_format(validarDinheiro($valor) + $this->saldo, 2, '.', ''));   
+        $valor = validarDinheiro($valor);
+        $valor = number_format($valor, 2, '.', '');
+        
+        $soma =($valor + $this->saldo);
         gravar($this->path, $soma);
+        
         //Texto para o extrato
-        $mensagemExtrato = 'Deposito de:<span style="color: green"> R$' .validarDinheiro($valor) . '</span>*';
+        $mensagemExtrato = 'Deposito de:<span style="color: green"> R$' . $valor . '</span>*';
+        (new Extrato())->setExtrato($mensagemExtrato);
+
+        header('Location: ' . BASE . '?url=saldo');
+    }
+
+    public function sacar($valor){
+        $valor = validarDinheiro($valor);
+        
+        $valor = number_format($valor, 2, '.', '');
+        $saldo = number_format($this->saldo, 2, '.', '');
+
+        $subtrair =($saldo - $valor);
+        
+        if(subtrair < 0){
+            return false;
+        }
+        
+        gravar($this->path, $subtrair);
+        
+        //Texto para o extrato
+        $mensagemExtrato = 'Saque de:<span style="color: red"> R$' . $valor . '</span>*';
         (new Extrato())->setExtrato($mensagemExtrato);
 
         header('Location: ' . BASE . '?url=saldo');

@@ -1,6 +1,6 @@
-{% extends "interna/partial.twig.php" %}
+{% extends "interna/partials/partial.twig.php" %}
 
-{% block title %}Valor inválido!{% endblock %}
+{% block title %}Erro!{% endblock %}
 
 {% block body %}
 <div class="main-container">

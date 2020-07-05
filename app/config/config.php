@@ -22,5 +22,6 @@ $router = [
     'sair' => 'LoginController@logout',
     'register' => 'LoginController@register',
     //INTERNAL CONTA
-    'run-deposito' => 'ContaController@depositar'
+    'run-deposito' => 'ContaController@depositar',
+    'run-saque' => 'ContaController@sacar'
 ];

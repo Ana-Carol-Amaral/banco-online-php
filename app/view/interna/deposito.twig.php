@@ -9,6 +9,9 @@
         <form action="{{BASE}}?url=run-deposito" method="post" id="frmDeposito">
             <label for="txtValor">Valor para deposito</label>
             <input type="text" id="txtValor" name="txtValor">
+            <div id="alert">
+                <div class="alert alert-info">Preencha corretamente o campo.</div>
+            </div>
             <div class="ar">
                 <input type="submit" value="Depositar" class="btn">
             </div>
@@ -16,7 +19,7 @@
     </div>
 
     <div class="grid-50">
-        <p class="saldo-medio">Saldo Atual R$ {{saldo | number_format(2, ',', '.')}}</p>
+        <p class="saldo-medio">Saldo atual: R$ {{ saldo | number_format(2, ',', '.') }}</p>
     </div>
 
     <div class="clear"></div>
