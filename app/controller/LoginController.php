@@ -4,7 +4,7 @@ namespace app\controller;
 
 use app\core\Controller;
 
-class loginController extends Controller
+class LoginController extends Controller
 {
     //#### VIEW ####
     public function login()
